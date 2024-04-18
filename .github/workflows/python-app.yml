@@ -28,15 +28,20 @@ jobs:
       if: runner.os == 'Windows'
       run: |
         python main.py -h
-    - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-    - name: Download
-      run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
-    - name: Extract
-      run: Expand-Archive ngrok.zip
-    - name: Auth
-      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
-      env:
-        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Create Tunnel
-      run: .\ngrok\ngrok.exe tcp 3389
+    # - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+    # - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
+    # - name: Download
+    #   run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
+    # - name: Extract
+    #   run: Expand-Archive ngrok.zip
+    # - name: Auth
+    #   run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+    #   env:
+    #     NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+    # - name: Create Tunnel
+    #   run: .\ngrok\ngrok.exe tcp 3389
+    - name: Switch to New User
+      run: |
+        $SecurePassword = ConvertTo-SecureString "Duythanh123." -AsPlainText -Force
+        $Credential = New-Object System.Management.Automation.PSCredential ("newuser", $SecurePassword)
+        Start-Process powershell.exe -Credential $Credential -NoNewWindow -ArgumentList "-Command", "echo 'Switched to newuser'"
