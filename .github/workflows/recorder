@@ -1,0 +1,40 @@
+name: YouTube Screenshot
+
+on:
+ workflow_dispatch
+
+jobs:
+  capture_screenshots:
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        usersname:
+          - "duongkimochii"
+          - "tuangym98"
+        
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+           python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create user folders
+        run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
+
+      - name: Run Selenium script
+        run: python main.py -user ${{ matrix.usersname }} -mode automatic -output ${{ matrix.usersname }} -ffmpeg
+
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.usersname }}
+          path: ${{ matrix.usersname }}
