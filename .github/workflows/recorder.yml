@@ -32,7 +32,7 @@ jobs:
         run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
 
       - name: Run Selenium script
-        run: python main.py -user ${{ matrix.usersname }} -mode automatic -output ${{ matrix.usersname }} -ffmpeg
+        run: python main.py -user ${{ matrix.usersname }} -mode automatic -output ${{ matrix.usersname }} 
 
       - name: Archive screenshots
         uses: actions/upload-artifact@v4
