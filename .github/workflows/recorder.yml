@@ -10,8 +10,10 @@ jobs:
     strategy:
       matrix:
         usersname:
-        
-          - "trinhatquankhu1"
+          - "honguynvn04"
+          - "duongkimochii"
+          - "buiquoc_sw"
+          - "hpp358965"
         
     
     steps:
