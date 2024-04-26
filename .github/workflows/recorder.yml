@@ -5,13 +5,13 @@ on:
 
 jobs:
   capture_screenshots:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     strategy:
       matrix:
         usersname:
-          - "duongkimochii"
-          - "tuangym98"
+          - "herst277"
+          - "kimnguyennanh"
         
     
     steps:
