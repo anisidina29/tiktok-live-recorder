@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "herst277"
+        
           - "kimnguyennanh"
         
     
@@ -26,13 +26,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - run: pip install ffmpeg-python
+      - name: Install FFmpeg
+        run: sudo apt-get install ffmpeg
 
       - name: Create user folders
         run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
 
       - name: Run Selenium script
-        run: python main.py -user ${{ matrix.usersname }}  -output ${{ matrix.usersname }} 
+        run: python main.py -user ${{ matrix.usersname }} -mode automatic -output ${{ matrix.usersname }} -ffmpeg 
 
       - name: Archive screenshots
         uses: actions/upload-artifact@v4
