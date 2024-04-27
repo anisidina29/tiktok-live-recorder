@@ -10,9 +10,9 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "buiquoc_sw"
-          # - "365.ngy.nh.em"
-          # - "duongkimochii"
+          
+          - "hmatuan9"
+          - "bimostreetworkout.id"
           # - "kimnguyennanh"
           # - "hpp358965"
         
