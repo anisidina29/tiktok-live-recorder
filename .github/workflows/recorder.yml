@@ -11,10 +11,11 @@ jobs:
       matrix:
         usersname:
           
-          - "hmatuan9"
+          - "buiquoc_sw"
           - "bimostreetworkout.id"
-          # - "kimnguyennanh"
-          # - "hpp358965"
+          - "vurambo_"
+          - "hpp358965"
+          - "duongkimmochii"
         
     
     steps:
