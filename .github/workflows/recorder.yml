@@ -10,11 +10,11 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "honguynvn04"
-          - "365.ngy.nh.em"
-          - "duongkimochii"
-          - "kimnguyennanh"
-          - "hpp358965"
+          - "buiquoc_sw"
+          # - "365.ngy.nh.em"
+          # - "duongkimochii"
+          # - "kimnguyennanh"
+          # - "hpp358965"
         
     
     steps:
