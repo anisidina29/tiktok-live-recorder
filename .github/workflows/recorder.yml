@@ -11,11 +11,12 @@ jobs:
       matrix:
         usersname:
           
-          - "tuntl675"
-          - "hongduong.1199"
+          - "buiquoc_sw"
+          - "honguynvn04"
+          - "365.ngy.nh.em"
+          - "duongkimochii"
           - "hmatuan9"
           - "hpp358965"
-          - "duongkimmochii"
         
     
     steps:
