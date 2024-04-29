@@ -21,7 +21,8 @@ jobs:
           # - "huutinh103"
           # - "herst277"
           # - "trinhatquankhu1"
-          - "kieubanana"
+          - "kenvo12022001"
+          - "thang_masic"
    
     steps:
       - name: Checkout code
