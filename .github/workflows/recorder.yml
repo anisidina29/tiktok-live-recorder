@@ -18,8 +18,9 @@ jobs:
           # - "hmatuan9"
           # - "hpp358965"
           # - "bimostreetworkout.id"
-          - "huutinh103"
-          - "herst277"
+          # - "huutinh103"
+          # - "herst277"
+          - "trinhatquankhu1"
    
     steps:
       - name: Checkout code
