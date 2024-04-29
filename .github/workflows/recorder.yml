@@ -11,15 +11,15 @@ jobs:
       matrix:
         usersname:
           
-          # - "buiquoc_sw"
-          # - "honguynvn04"
-          # - "365.ngy.nh.em"
-          # - "duongkimochii"
-          # - "hmatuan9"
-          # - "hpp358965"
-          # - "bimostreetworkout.id"
-          # - "huutinh103"
-          # - "herst277"
+          - "buiquoc_sw"
+          - "honguynvn04"
+          - "365.ngy.nh.em"
+          - "duongkimochii"
+          - "hmatuan9"
+          - "hpp358965"
+          - "bimostreetworkout.id"
+          - "huutinh103"
+          - "herst277"
           - "trinhatquankhu1"
    
     steps:
@@ -48,5 +48,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ${{ matrix.usersname }}-$(TZ=":Asia/Bangkok" date +'%Y-%m-%d_%H-%M-%S')
+          name: ${{ matrix.usersname }}
           path: ${{ matrix.usersname }}
