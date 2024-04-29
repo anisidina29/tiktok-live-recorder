@@ -39,6 +39,7 @@ jobs:
       - name: Create user folders
         run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
 
+
       - name: Run Selenium script
         run: python main.py -user ${{ matrix.usersname }} -mode automatic -output ${{ matrix.usersname }} -ffmpeg 
 
@@ -46,5 +47,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ${{ matrix.usersname }}
+          name: ${{ matrix.usersname }}-$(TZ=":Asia/Bangkok" date +'%Y-%m-%d_%H-%M-%S')
           path: ${{ matrix.usersname }}
