@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "park.77m1"
+          # - "park.77m1"
           # - "buiquoc_sw"
           # - "honguynvn04"
           # - "365.ngy.nh.em"
@@ -24,7 +24,7 @@ jobs:
           # - "kenvo12022001"
           # - "thang_masic"
           # - "dng.m.prayer"
-          - "hmhoang6"
+          - "tuntl675"
    
     steps:
       - name: Checkout code
