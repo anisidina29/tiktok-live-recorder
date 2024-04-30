@@ -109,7 +109,7 @@ class TikTok:
             else:
                 self.output = self.output + "/"
 
-        output = f"{self.output if self.output else ''}TK_{self.user}_{current_date}_flv.mp4"
+        output = f"{self.output if self.output else ''}TikTok_Id_{self.user}_{current_date}_flv.mp4"
 
         print("")
         (
