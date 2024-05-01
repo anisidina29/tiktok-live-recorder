@@ -10,21 +10,22 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "park.77m1"
-          - "buiquoc_sw"
-          - "honguynvn04"
-          - "365.ngy.nh.em"
-          - "duongkimochii"
-          - "hmatuan9"
-          - "hpp358965"
-          - "bimostreetworkout.id"
-          - "huutinh103"
-          - "herst277"
-          - "trinhatquankhu1"
-          - "kenvo12022001"
-          - "thang_masic"
-          - "dng.m.prayer"
-          - "tuntl675"
+          # - "park.77m1"
+          # - "buiquoc_sw"
+          # - "honguynvn04"
+          # - "365.ngy.nh.em"
+          # - "duongkimochii"
+          # - "hmatuan9"
+          # - "hpp358965"
+          # - "bimostreetworkout.id"
+          # - "huutinh103"
+          # - "herst277"
+          # - "trinhatquankhu1"
+          # - "kenvo12022001"
+          # - "thang_masic"
+          # - "dng.m.prayer"
+          # - "tuntl675"
+          - "bee.calisthenics"
    
     steps:
       - name: Checkout code
