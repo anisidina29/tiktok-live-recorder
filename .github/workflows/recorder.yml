@@ -25,7 +25,7 @@ jobs:
           # - "thang_masic"
           # - "dng.m.prayer"
           # - "tuntl675"
-          - "bee.calisthenics"
+          - "hy.calis"
    
     steps:
       - name: Checkout code
