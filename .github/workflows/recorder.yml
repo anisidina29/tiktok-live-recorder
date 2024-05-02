@@ -25,6 +25,7 @@ jobs:
           - "thang_masic"
           - "dng.m.prayer"
           - "tuntl675"
+          - "kimnguyennanh"
          # - "hy.calis"
    
     steps:
