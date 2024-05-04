@@ -30,7 +30,7 @@ jobs:
           - "truongminhdung1904"
           # # - "kiennguyenvan0302"
           - "voquyhuyyy24102001"
-          - "ikram_rmdn"
+          - "hy.calis"
    
     steps:
       - name: Checkout code
