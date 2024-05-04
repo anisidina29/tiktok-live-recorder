@@ -10,12 +10,12 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "park.77m1"
-          - "buiquoc_sw"
-          - "honguynvn04"
-          - "365.ngy.nh.em"
-          - "duongkimochii"
-          - "hmatuan9"
+          #- "park.77m1"
+          #- "buiquoc_sw"
+          #- "honguynvn04"
+          #- "365.ngy.nh.em"
+          #- "duongkimochii"
+          #- "hmatuan9"
           - "hpp358965"
           - "bimostreetworkout.id"
           - "huutinh103"
@@ -27,7 +27,7 @@ jobs:
           - "ngthanhlong021006"
           - "dng.m.prayer"
           - "tuntl675"
-          - "truongminhdung1904"
+          #- "truongminhdung1904"
           - "ngthanhlong021006"
           - "voquyhuyyy24102001"
           - "hy.calis"
