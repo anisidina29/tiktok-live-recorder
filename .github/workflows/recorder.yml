@@ -31,8 +31,8 @@ jobs:
       
           # #- "voquyhuyyy24102001"
           # # - "congmanhfitness"
-          - "xavuong.kings"
-          - "hy.calis"
+          - "yeuem2003n"
+          - "ikram_rmdn"
    
     steps:
       - name: Checkout code
