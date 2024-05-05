@@ -22,15 +22,15 @@ jobs:
           #- "herst277"
           #- "trinhatquankhu1"
           #- "kenvo12022001"
-          - "rforrachman"
+          #- "rforrachman"
          # - "ntf_205"
           - "ngthanhlong021006"
           #- "dng.m.prayer"
         #  - "tuntl675"
           #- "truongminhdung1904"
-          - "ngthanhlong021006"
+          #- "ngthanhlong021006"
           #- "voquyhuyyy24102001"
-          - "hy.calis"
+          - "congmanhfitness"
    
     steps:
       - name: Checkout code
