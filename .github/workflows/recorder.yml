@@ -11,6 +11,7 @@ jobs:
       matrix:
         usersname:
           # - "park.77m1"
+          - "minhly06_01"
           - "buiquoc_sw"
           - "honguynvn04"
           - "365.ngy.nh.em"
