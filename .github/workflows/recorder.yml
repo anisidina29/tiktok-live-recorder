@@ -11,10 +11,11 @@ jobs:
       matrix:
         usersname:
           # - "park.77m1"
-          - "vutuanktc.het"
+          - "bonbarber2210"
           - "minhly06_01"
           - "hunggymcalis"
-          - "buiquoc_sw"
+          - "quocvu93"
+          #- "buiquoc_sw"
           - "truongminhdung1904"
          # - "anhhhh_tu"
          # - "hongduong.1199"
