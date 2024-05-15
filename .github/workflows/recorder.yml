@@ -13,7 +13,7 @@ jobs:
           # - "park.77m1"
           - "minhly06_01"
           - "hunggymcalis"
-          #- "buiquoc_sw"
+          - "buiquoc_sw"
           - "truongminhdung1904"
          # - "anhhhh_tu"
          # - "hongduong.1199"
@@ -41,7 +41,7 @@ jobs:
           - "yeuem2003n"
           - "ikram_rmdn"
           - "minhnam2004"
-          #- "tuangym98"
+          - "tuangym98"
    
     steps:
       - name: Checkout code
