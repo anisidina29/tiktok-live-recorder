@@ -11,11 +11,11 @@ jobs:
       matrix:
         usersname:
           # - "park.77m1"
-          - "bonbarber2210"
+         # - "bonbarber2210"
           - "minhly06_01"
-          - "hunggymcalis"
-          - "quocvu93"
-          #- "buiquoc_sw"
+         # - "hunggymcalis"
+          #- "quocvu93"
+          - "buiquoc_sw"
           - "truongminhdung1904"
          # - "anhhhh_tu"
          # - "hongduong.1199"
@@ -26,7 +26,7 @@ jobs:
           - "hpp358965"
           - "bimostreetworkout.id"
           - "huutinh103"
-          #- "herst277"
+          - "herst277"
           - "trinhatquankhu1"
           #- "kenvo12022001"
           - "hy.calis"
@@ -34,7 +34,7 @@ jobs:
           - "ntf_205"
           - "ngthanhlong021006"
           - "hoanganh1112022"
-          #- "tuntl675"
+          - "tuntl675"
           
           #- "viluong.gg"
       
