@@ -45,7 +45,8 @@ jobs:
           - "yeuem2003n"
           - "ikram_rmdn"
           - "minhnam2004"
-          - "tuangym98"
+          #- "tuangym98"
+          - "thanabodxx"
    
     steps:
       - name: Checkout code
