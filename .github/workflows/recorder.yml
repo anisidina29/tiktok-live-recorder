@@ -47,6 +47,7 @@ jobs:
           - "minhnam2004"
           #- "tuangym98"
           - "thanabodxx"
+          - "thang_masic"
    
     steps:
       - name: Checkout code
