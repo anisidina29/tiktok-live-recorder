@@ -1,0 +1,50 @@
+name: YT 2
+
+on:
+ workflow_dispatch
+
+jobs:
+  capture_screenshots:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        usersname:
+          - "usernames1"
+          - "usernames2"
+          - "usernames3"
+          - "usernames4"
+          - "usernames5"
+          - "usernames6"
+          - "usernames7"
+          - "usernames8"
+          - "usernames9"
+          - "usernames10"
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+           python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install FFmpeg
+        run: sudo apt-get install ffmpeg
+
+      - name: Create user folders
+        run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
+
+
+      - name: Run Selenium script
+        run: python main3.py -username ${{ matrix.usersname }}
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.usersname }}
+          path: ${{ matrix.usersname }}
