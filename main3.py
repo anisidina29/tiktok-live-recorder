@@ -36,8 +36,8 @@ usernames3 = ["duongkimochii","duongtapxo","congmanhfitness","_nmd04","hieuluoit
 usernames4 = ["hmatuan9","huutinh103","anhbodoi6mui","ikram_rmdn","kieubanana","cokhiminhtrung"]
 usernames5 = ["hpp358965","rforrachman","ntf_205","rhenz_win","ashuracalisthenicsteam","nihao22012003"]
 usernames6 = ["tvc.gym","ngthanhlong021006","kenvo12022001","minhnam2004","minh.ha0102","tienfit"]
-usernames7 = ["hy.calis","bimostreetworkout.id","kenvo12022001","vanbinh0906","duc_trong9x"]
-usernames8 = ["hoanganh1112022","tuntl675", "yeuem2003n","thanabodxx","minh.ha0102","quang_fitness"]
+usernames7 = ["hy.calis","bimostreetworkout.id","kenvo12022001","vanbinh0906","duc_trong9x","huyvo.1510"]
+usernames8 = ["hoanganh1112022","tuntl675", "yeuem2003n","thanabodxx","minh.ha0102","quang_fitness","huuhieulam","nxp.fitness","thanhthong2608"]
 usernames9 = ["chulongcuaemm","141201nth", "voquyhuyyy24102001","manhhiucute","hieuvilai2007","trun_trun.32"]
 usernames10 = ["anhhhh_tu","tuanhamez","sinhan68","jdnummer1","minhnguyen_ifbb","duyanh_15112003","nxp.fitness","thanhthong2608","bee.calisthenics"]
 # Mapping choices to actual lists
