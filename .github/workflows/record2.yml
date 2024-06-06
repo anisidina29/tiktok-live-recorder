@@ -1,7 +1,10 @@
 name: YT 2
 
 on:
- workflow_dispatch
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2,8,14 * * *'
+
 
 jobs:
   capture_screenshots:
