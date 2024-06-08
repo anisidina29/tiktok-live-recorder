@@ -1,0 +1,65 @@
+name: YT 3
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2,8,14 * * *'
+
+
+jobs:
+  capture_screenshots:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        usersname:
+          - "usernames1"
+          - "usernames2"
+          - "usernames3"
+          - "usernames4"
+          - "usernames5"
+          - "usernames6"
+          - "usernames7"
+          - "usernames8"
+          - "usernames9"
+          - "usernames10"
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+           python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - uses: Jimver/cuda-toolkit@v0.2.15
+        id: cuda-toolkit
+        with:
+          cuda: '12.4.1'
+      
+      - run: nvcc -V
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get upgrade -y
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository -y ppa:savoury1/ffmpeg4
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          pip install demucs
+      
+
+      - name: Create user folders
+        run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
+
+
+      - name: Run Selenium script
+        run: python main4.py -username ${{ matrix.usersname }}
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.usersname }}
+          path: ${{ matrix.usersname }}
