@@ -36,10 +36,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Update and upgrade packages
+        run: sudo apt-get update && sudo apt-get upgrade -y
+      
       - name: Install FFmpeg
-        run: 
-            sudo apt update
-            sudo apt-get install ffmpeg
+        run: sudo apt-get install -y ffmpeg
 
       - name: Create user folders
         run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
