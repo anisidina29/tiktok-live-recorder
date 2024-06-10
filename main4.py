@@ -3,6 +3,7 @@ import subprocess
 import threading
 import multiprocessing
 import os
+import signal
 import time
 
 # Hàm để phân tích cú pháp các đối số dòng lệnh
@@ -20,8 +21,11 @@ def parse_args():
 def run_command(username, output):
     command = f"python3 main.py -user {username} -mode automatic -output {output} -ffmpeg"
     try:
-        result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
-        print(result.stdout)
+        while True:
+            result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+            print(result.stdout)
+            # Đợi một khoảng thời gian trước khi chạy lại lệnh
+            time.sleep(10)
     except subprocess.CalledProcessError as e:
         print(f"Command '{command}' returned non-zero exit status {e.returncode}.")
         print(f"Error output: {e.stderr}")
@@ -52,7 +56,6 @@ def process_single_video(video_path, output_dir):
     os.remove(temp_video_path)
     os.remove(video_path)
 
-# Hàm để xử lý video bằng demucs và ffmpeg
 def process_video(output_dir, interval=300):
     processed_files = set()
     while True:
@@ -70,6 +73,19 @@ def process_video(output_dir, interval=300):
         # Đợi một khoảng thời gian trước khi kiểm tra lại
         time.sleep(interval)
 
+def countdown_timer(duration, process_list):
+    time.sleep(duration)
+    print("Thời gian đã hết. Dừng tất cả các tiến trình và luồng.")
+    
+    # Gửi tín hiệu để dừng tất cả các tiến trình
+    for process in process_list:
+        os.kill(process.pid, signal.SIGTERM)
+    
+    # Dừng tất cả các luồng
+    for thread in threading.enumerate():
+        if thread is not threading.current_thread():
+            thread._stop()
+
 # Danh sách các username
 usernames1 = ["park.77m1","bonbarber2210","minhly06_01", "hunggymcalis", "quocvu93","nienty28", "buiquoc_sw","truongminhdung1904","anhhhh_tu","hongduong.1199"]
 usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","gymerteamhonda","kimnguyennanh"]
@@ -81,6 +97,7 @@ usernames7 = ["hy.calis","bimostreetworkout.id","kenvo12022001","vanbinh0906","d
 usernames8 = ["hoanganh1112022","tuntl675", "yeuem2003n","thanabodxx","minh.ha0102","quang_fitness","huuhieulam","nxp.fitness","thanhthong2608"]
 usernames9 = ["chulongcuaemm","141201nth", "voquyhuyyy24102001","manhhiucute","hieuvilai2007","trun_trun.32"]
 usernames10 = ["anhhhh_tu","tuanhamez","sinhan68","jdnummer1","minhnguyen_ifbb","duyanh_15112003","nxp.fitness","thanhthong2608","bee.calisthenics"]
+
 # Mapping choices to actual lists
 username_lists = {
     'usernames1': usernames1,
@@ -110,15 +127,21 @@ def main():
     # Tạo tiến trình để xử lý video
     video_process = multiprocessing.Process(target=process_video, args=(output,))
 
+    # Tạo tiến trình đếm ngược
+    countdown_duration = 5 * 60 * 60 + 50 * 60  # 5 giờ 50 phút
+    countdown_process = threading.Thread(target=countdown_timer, args=(countdown_duration, processes))
+
     # Bắt đầu chạy các tiến trình
     for process in processes:
         process.start()
     video_process.start()
+    countdown_process.start()
 
     # Đợi tất cả các tiến trình hoàn thành
     for process in processes:
         process.join()
     video_process.join()
+    countdown_process.join()
 
     print("Tất cả tiến trình đã hoàn thành.")
 
