@@ -59,7 +59,7 @@ jobs:
 
 
       - name: Run Selenium script
-        run: python main4.py -username ${{ matrix.usersname }}
+        run: python main3.py -username ${{ matrix.usersname }}
       - name: Archive screenshots
         uses: actions/upload-artifact@v4
         if: always()
