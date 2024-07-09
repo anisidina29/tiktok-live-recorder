@@ -239,9 +239,18 @@ class TikTok:
             if response.status_code == StatusCode.REDIRECT:
                 raise errors.Blacklisted('Redirect')
 
+            # content = response.text
+            # if "room_id" not in content:
+            #     raise ValueError()
+
+            # return re.findall("room_id=(.*?)\"/>", content)[0]
             content = response.text
             if "room_id" not in content:
-                raise ValueError()
+                match = re.search(r'"roomId":"(\d+)"', content)
+                if not match:
+                    raise ValueError()
+                else:
+                    return match.group(1)
 
             return re.findall("room_id=(.*?)\"/>", content)[0]
         except (req.HTTPError, errors.Blacklisted) as e:
