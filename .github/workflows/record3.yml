@@ -42,6 +42,9 @@ jobs:
       - name: Update and upgrade packages
         run: sudo apt-get update && sudo apt-get upgrade -y
       
+      - name: Install dependencies
+        run: pip install selenium
+      
       - name: Install FFmpeg
         run: sudo apt-get install -y ffmpeg
 
