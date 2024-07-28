@@ -1,25 +1,20 @@
-import argparse
+import os
 import subprocess
 import threading
-import os
+import argparse
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
-# Hàm để phân tích cú pháp các đối số dòng lệnh
+# Function to parse command line arguments
 def parse_args():
-    """
-    Parse command line arguments.
-    """
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("-username",
-                        dest="username",
-                        help="List username.",
-                        
-                        required=True,
-                        action='store')
-    
+    parser.add_argument("-username", dest="username", help="List username.", required=True, action='store')
     args = parser.parse_args()
     return args
 
-# Hàm để chạy lệnh bên ngoài
+# Function to run external command
 def run_command(username, output):
     command = f"python3 main.py -user {username} -mode automatic -output {output} -ffmpeg"
     try:
@@ -29,7 +24,51 @@ def run_command(username, output):
         print(f"Command '{command}' returned non-zero exit status {e.returncode}.")
         print(f"Error output: {e.stderr}")
 
-# Danh sách các username
+# Function to run YouTube automation in a separate thread
+def run_thread(keyword):
+    driver = webdriver.Chrome()
+    try:
+        driver.get("https://www.youtube.com/")
+        search_box = driver.find_element(By.XPATH, '//input[@id="search"]')
+        search_box.send_keys("@Boymuscleworkout")
+        search_box.send_keys(Keys.RETURN)
+        time.sleep(5)
+
+        video_link = driver.find_element(By.XPATH, '//*[@id="subscribers" and contains(text(), "@Boymuscleworkout")]')
+        video_link.click()
+        time.sleep(5)
+
+        playlists = driver.find_element(By.XPATH, '//yt-tab-shape[@tab-title="Playlists"]')
+        playlists.click()
+        time.sleep(5)
+        
+        watch_video = driver.find_element(By.XPATH, f'//a[@id="video-title" and contains(text(), "{keyword}")]')
+        watch_video.click()
+        time.sleep(10)
+
+        while True:
+            driver.save_screenshot(f"screenshot_{keyword}_{time.time()}.png")
+            print(f"Screenshot taken for keyword: {keyword}")
+            time.sleep(300)  # Wait for 10 minutes before taking the next screenshot
+
+    except Exception as e:
+        print(f"Exception occurred: {e}")
+        driver.get("https://www.youtube.com/@Boymuscleworkout/playlists")
+        time.sleep(10)
+        
+        watch_video = driver.find_element(By.XPATH, f'//a[@id="video-title" and contains(text(), "{keyword}")]')
+        watch_video.click()
+        time.sleep(10)
+
+        while True:
+            driver.save_screenshot(f"screenshot_{keyword}_{time.time()}.png")
+            print(f"Screenshot taken for keyword: {keyword}")
+            time.sleep(300)  # Wait for 10 minutes before taking the next screenshot
+
+    finally:
+        driver.quit()
+
+# List of usernames for different categories
 usernames1 = ["park.77m1","bonbarber2210","minhly06_01", "hunggymcalis", "quocvu93","nienty28", "buiquoc_sw","truongminhdung1904","hongduong.1199","k6will"]
 usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","gymerteamhonda","kimnguyennanh","namomothichbenchpress","duongbeobuong","tinthichnhay2000"]
 usernames3 = ["duongkimochi","duongtapxo","congmanhfitness","_nmd04","hieuluoitap","fu_nguyen68","phongbum2002","vonhut.201","rin.fitness6","cuong_02032006","dksjsjn"]
@@ -58,25 +97,31 @@ username_lists = {
 def main():
     args = parse_args()
     output = args.username
-    # Lấy danh sách các username từ đối số dòng lệnh
     usernames = username_lists[args.username]
 
-
-    # Tạo luồng cho mỗi username trong danh sách
+    # Create threads for each username
     threads = []
     for username in usernames:
         thread = threading.Thread(target=run_command, args=(username, output))
         threads.append(thread)
+    
+    keywords = ["hieuvilai2007", "honguynvn04"]  # Replace with actual keywords
+    for keyword in keywords:
+        yt_thread = threading.Thread(target=run_thread, args=(keyword,))
+        yt_thread.start()
+        threads.append(yt_thread)
 
-    # Bắt đầu chạy các luồng
+    # Start all threads for run_command
     for thread in threads:
         thread.start()
 
-    # Đợi tất cả các luồng hoàn thành
+
+
+    # Wait for all threads to complete
     for thread in threads:
         thread.join()
 
-    print("Tất cả luồng đã hoàn thành.")
+    print("All threads have completed.")
 
 if __name__ == "__main__":
     main()
