@@ -1,19 +1,21 @@
 import argparse
 import subprocess
 import threading
-import multiprocessing
 import os
-import signal
-import time
 
 # Hàm để phân tích cú pháp các đối số dòng lệnh
 def parse_args():
+    """
+    Parse command line arguments.
+    """
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("-username",
                         dest="username",
                         help="List username.",
+                        
                         required=True,
                         action='store')
+    
     args = parser.parse_args()
     return args
 
@@ -21,82 +23,23 @@ def parse_args():
 def run_command(username, output):
     command = f"python3 main.py -user {username} -mode automatic -output {output} -ffmpeg"
     try:
-        while True:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
-            print(result.stdout)
-            # Đợi một khoảng thời gian trước khi chạy lại lệnh
-            time.sleep(10)
+        result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+        print(result.stdout)
     except subprocess.CalledProcessError as e:
         print(f"Command '{command}' returned non-zero exit status {e.returncode}.")
         print(f"Error output: {e.stderr}")
 
-# Hàm để xử lý video bằng demucs và ffmpeg
-def process_single_video(video_path, output_dir):
-    # Tách âm thanh bằng demucs
-    command = f"python -m demucs.separate -d cuda --out {output_dir} {video_path}"
-    subprocess.run(command, shell=True)
-    
-    # Đường dẫn tới tệp âm thanh giọng hát đã tách
-    vocals_path = os.path.join(output_dir, "htdemucs", os.path.basename(video_path).replace(".mp4", ""), "vocals.wav")
-
-    # Đường dẫn tới video tạm thời không có âm thanh
-    temp_video_path = f"{video_path[0:-4]}_temp.mp4"
-
-    # Tách âm thanh khỏi video và lưu lại video không có âm thanh
-    subprocess.run(f"ffmpeg -i {video_path} -c copy -an {temp_video_path}", shell=True)
-
-    # Thay âm thanh của video bằng âm thanh giọng hát đã tách và lưu video mới
-    without_music_dir = os.path.join(output_dir, "without_music")
-    if not os.path.exists(without_music_dir):
-        os.makedirs(without_music_dir)
-    output_video_path = os.path.join(without_music_dir, f"{os.path.basename(video_path[0:-4])}_without_music.mp4")
-    subprocess.run(f"ffmpeg -i {temp_video_path} -i {vocals_path} -c:v copy -c:a aac -strict experimental {output_video_path}", shell=True)
-
-    # Xóa video tạm thời và video gốc
-    os.remove(temp_video_path)
-    os.remove(video_path)
-
-def process_video(output_dir, interval=300):
-    processed_files = set()
-    while True:
-        # Lấy danh sách các tệp video mới trong thư mục output
-        for file_name in os.listdir(output_dir):
-            if file_name.endswith(".mp4") and file_name not in processed_files:
-                video_path = os.path.join(output_dir, file_name)
-                processed_files.add(file_name)
-
-                # Tạo luồng để xử lý video
-                thread = threading.Thread(target=process_single_video, args=(video_path, output_dir))
-                thread.start()
-                thread.join()
-        
-        # Đợi một khoảng thời gian trước khi kiểm tra lại
-        time.sleep(interval)
-
-def countdown_timer(duration, process_list):
-    time.sleep(duration)
-    print("Thời gian đã hết. Dừng tất cả các tiến trình và luồng.")
-    
-    # Gửi tín hiệu để dừng tất cả các tiến trình
-    for process in process_list:
-        os.kill(process.pid, signal.SIGTERM)
-    
-    # Dừng tất cả các luồng
-    for thread in threading.enumerate():
-        if thread is not threading.current_thread():
-            thread._stop()
-
 # Danh sách các username
-usernames1 = ["park.77m1","bonbarber2210","minhly06_01", "hunggymcalis", "quocvu93","nienty28", "buiquoc_sw","truongminhdung1904","anhhhh_tu","hongduong.1199"]
-usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","gymerteamhonda","kimnguyennanh","namomothichbenchpress"]
-usernames3 = ["duongkimochii","duongtapxo","congmanhfitness","_nmd04","hieuluoitap","fu_nguyen68","phongbum2002","vonhut.201","rin.fitness6"]
-usernames4 = ["hmatuan9","huutinh103","anhbodoi6mui","ikram_rmdn","kieubanana","cokhiminhtrung","hungrambo1_","bachmahoangtu2k"]
-usernames5 = ["hpp358965","rforrachman","ntf_205","rhenz_win","ashuracalisthenicsteam","nihao22012003","dp_120796"]
-usernames6 = ["tvc.gym","ngthanhlong021006","minhnam2004","tienfit","anhtung_0510","vanhcalis2007","hoangchuii","pt.lehoan"]
+usernames1 = ["park.77m1","bonbarber2210","minhly06_01", "hunggymcalis", "quocvu93","nienty28", "buiquoc_sw","truongminhdung1904","hongduong.1199","k6will"]
+usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","gymerteamhonda","kimnguyennanh","namomothichbenchpress","duongbeobuong","tinthichnhay2000"]
+usernames3 = ["duongkimochi","duongtapxo","congmanhfitness","_nmd04","hieuluoitap","fu_nguyen68","phongbum2002","vonhut.201","rin.fitness6","cuong_02032006","dksjsjn"]
+usernames4 = ["hmatuan9","huutinh103","anhbodoi6mui","ikram_rmdn","kieubanana","cokhiminhtrung","hungrambo1_","bachmahoangtu2k","frog2lee2_","duc_trong11","t_fitness3993"]
+usernames5 = ["hpp358965","rforrachman","ntf_205","rhenz_win","ashuracalisthenicsteam","nihao22012003","dp_120796","chuyn1999","noluckyluat2","phuongquan778899","truong66789"]
+usernames6 = ["tvc.gym","ngthanhlong021006","minhnam2004","tienfit","anhtung_0510","vanhcalis2007","hoangchuii","pt.lehoan","duongerik99k","letruong0362"]
 usernames7 = ["hy.calis","bimostreetworkout.id","kenvo12022001","vanbinh0906","duc_trong9x","huyvo.1510","hung01082004","khacllong","thanhhau6.3","vantugdji"]
-usernames8 = ["hoanganh1112022","tuntl675", "yeuem2003n","thanabodxx","minh.ha0102","quang_fitness","huuhieulam","trunghuynh1105","thanhthong2608"]
-usernames9 = ["chulongcuaemm","141201nth", "voquyhuyyy24102001","manhhiucute","hieuvilai2007","trun_trun.32","congsothichtapgym","nien_2006"]
-usernames10 = ["anhhhh_tu","tuanhamez","sinhan68","jdnummer1","minhnguyen_ifbb","duyanh_15112003","nxp.fitness","thanhthong2608","bee.calisthenics"]
+usernames8 = ["hoanganh1112022","tuntl675", "yeuem2003n","thanabodxx","minh.ha0102","quang_fitness","huuhieulam","trunghuynh1105","thanhthong2608","sadboiz26032004_"]
+usernames9 = ["pvmminh","141201nth", "voquyhuyyy24102001","manhhiucute","hieuvilai2007","trun_trun.32","congsothichtapgym","nien_2006","kiennguyenvan0302","louischien7","_vcuongg15_"]
+usernames10 = ["anhhhh_tu","tuanhamez","sinhan68","jdnummer1","minhnguyen_ifbb","duyanh_15112003","nxp.fitness","thanhthong2608","bee.calisthenics","trungduong.97","nguyendatfitness"]
 
 # Mapping choices to actual lists
 username_lists = {
@@ -118,32 +61,22 @@ def main():
     # Lấy danh sách các username từ đối số dòng lệnh
     usernames = username_lists[args.username]
 
-    # Tạo tiến trình cho mỗi username trong danh sách
-    processes = []
+
+    # Tạo luồng cho mỗi username trong danh sách
+    threads = []
     for username in usernames:
-        process = multiprocessing.Process(target=run_command, args=(username, output))
-        processes.append(process)
+        thread = threading.Thread(target=run_command, args=(username, output))
+        threads.append(thread)
 
-    # Tạo tiến trình để xử lý video
-    video_process = multiprocessing.Process(target=process_video, args=(output,))
+    # Bắt đầu chạy các luồng
+    for thread in threads:
+        thread.start()
 
-    # Tạo tiến trình đếm ngược
-    countdown_duration = 5 * 60 * 60 + 50 * 60  # 5 giờ 50 phút
-    countdown_process = threading.Thread(target=countdown_timer, args=(countdown_duration, processes))
+    # Đợi tất cả các luồng hoàn thành
+    for thread in threads:
+        thread.join()
 
-    # Bắt đầu chạy các tiến trình
-    for process in processes:
-        process.start()
-    video_process.start()
-    countdown_process.start()
-
-    # Đợi tất cả các tiến trình hoàn thành
-    for process in processes:
-        process.join()
-    video_process.join()
-    countdown_process.join()
-
-    print("Tất cả tiến trình đã hoàn thành.")
+    print("Tất cả luồng đã hoàn thành.")
 
 if __name__ == "__main__":
     main()
