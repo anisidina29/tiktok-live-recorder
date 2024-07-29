@@ -8,6 +8,7 @@ on:
 
 jobs:
   capture_screenshots:
+    continue-on-error: true
     runs-on: ubuntu-latest
     
     strategy:
@@ -54,6 +55,7 @@ jobs:
           path: ${{ matrix.usersname }}
 
   youtube_bot:
+    continue-on-error: true
     strategy:
       matrix:
         os: [macos-latest, windows-2019, windows-latest, windows-2019, windows-2022]
@@ -74,7 +76,7 @@ jobs:
         run: pip install selenium
 
       - name: Run Selenium script
-        run: python selenium.py
+        run: python my_selenium.py
 
       - name: Archive screenshots
         uses: actions/upload-artifact@v4
