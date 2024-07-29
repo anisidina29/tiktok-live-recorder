@@ -13,16 +13,9 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "usernames1"
-          - "usernames2"
-          - "usernames3"
-          - "usernames4"
-          - "usernames5"
-          - "usernames6"
-          - "usernames7"
-          - "usernames8"
-          - "usernames9"
-          - "usernames10"
+          - "usernamesA"
+          - "usernamesB"
+          - "usernamesC"
     
     steps:
       - name: Checkout code
