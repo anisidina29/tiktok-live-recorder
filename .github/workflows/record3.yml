@@ -36,9 +36,6 @@ jobs:
       - name: Update and upgrade packages
         run: sudo apt-get update && sudo apt-get upgrade -y
       
-      - name: Install dependencies
-        run: pip install selenium psutil
-      
       - name: Install FFmpeg
         run: sudo apt-get install -y ffmpeg
 
@@ -73,7 +70,7 @@ jobs:
            python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install selenium
+        run: pip install selenium psutil
 
       - name: Run Selenium script
         run: python my_selenium.py
