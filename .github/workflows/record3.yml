@@ -37,7 +37,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get upgrade -y
       
       - name: Install dependencies
-        run: pip install selenium
+        run: pip install selenium psutil
       
       - name: Install FFmpeg
         run: sudo apt-get install -y ffmpeg
