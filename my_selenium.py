@@ -1,108 +1,69 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
 import time
 import threading
-import multiprocessing
-import psutil
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+import chromedriver_autoinstaller
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
-def run_thread(keyword):
-    driver = webdriver.Chrome()
+# Automatically install the ChromeDriver and get its path
+chromedriver_autoinstaller.install()
 
-    try: 
-        driver.get("https://www.youtube.com/")
-        search_box = driver.find_element(By.XPATH, '//input[@id="search"]')
-        search_box.send_keys("@Boymuscleworkout")
-        search_box.send_keys(Keys.RETURN)
-        time.sleep(5)
+# Chrome options for headless browsing
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Ensure GUI is off
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
-        video_link = driver.find_element(By.XPATH, '//*[@id="subscribers" and contains(text(), "@Boymuscleworkout")]')
-        video_link.click()
-        time.sleep(5)
+def create_driver():
+    return webdriver.Chrome(options=chrome_options)
 
-        playlists = driver.find_element(By.XPATH, '//yt-tab-shape[@tab-title="Playlists"]')
-        playlists.click()
-        time.sleep(5)
-        watch_video = driver.find_element(By.XPATH, '//a[@id="video-title" and contains(text(), "{}")]'.format(keyword))
-        watch_video.click()
-        time.sleep(10)
-        # Define the XPath of the button
-        xpath = '//button[@aria-label="Loop playlist"]'
+def run_thread(url, thread_id):
+    DRIVERS = 10
+    driver = []
+    BreakRate = 10 #sec
 
-        # Find the button element by XPath
-        element = driver.find_element(By.XPATH, xpath)
-
-        # Click the button using JavaScript
-        driver.execute_script("arguments[0].click();", element)
-
-        while True:
-            driver.save_screenshot("screenshot_{}_{}.png".format(keyword, time.time()))
-            print("Screenshot taken for keyword: {}".format(keyword))
-            time.sleep(300)
-
-        driver.quit()
+    for i in range(DRIVERS):
+        driver.append(webdriver.Chrome(options=chrome_options))
+        driver[i].get(url)
+        action = ActionChains(driver[i])
+        action.send_keys(Keys.SPACE)
+        action.perform()
     
-    except:
-        driver.get("https://www.youtube.com/@Boymuscleworkout/playlists")
-        time.sleep(10)
-        watch_video = driver.find_element(By.XPATH, '//a[@id="video-title" and contains(text(), "{}")]'.format(keyword))
-        watch_video.click()
-        time.sleep(10)
-        # Define the XPath of the button
-        xpath = '//button[@aria-label="Loop playlist"]'
-
-        # Find the button element by XPath
-        element = driver.find_element(By.XPATH, xpath)
-
-        # Click the button using JavaScript
-        driver.execute_script("arguments[0].click();", element)
-
-        while True:
-            driver.save_screenshot("screenshot_{}_{}.png".format(keyword, time.time()))
-            print("Screenshot taken for keyword: {}".format(keyword))
-            time.sleep(300)
-
-        driver.quit()
-
-def resource_check():
-    cpu_usage = psutil.cpu_percent(interval=1)
-    ram_usage = psutil.virtual_memory().percent
-    return cpu_usage < 90 and ram_usage < 90
-
-def run_process(elements):
-    threads = []
-    element_index = 0
-
     while True:
-        if element_index >= len(elements):
-            break
+        # Simulate user activity
+        time.sleep(10)  # Wait for 10 seconds
         
-        if resource_check():
-            element = elements[element_index]
-            thread = threading.Thread(target=run_thread, args=(element,))
-            thread.start()
-            threads.append(thread)
-            element_index += 1
-        else:
-            print("High resource usage detected. Waiting...")
-            time.sleep(60)  # Chờ một chút trước khi kiểm tra lại
+        # Refresh the page and take a screenshot
+        driver.refresh()
+        action.perform()
+        driver.save_screenshot(f"screenshot_{thread_id}_{time.time()}.png")
+        print(f"Screenshot taken for URL {url} by thread {thread_id}")
 
-    # Chờ tất cả các thread hoàn thành
+def main():
+    # Fetch the list of video links
+    driver = create_driver()
+    driver.get("https://www.youtube.com/@Boymuscleworkout/videos")
+    driver.implicitly_wait(30)  # Implicit wait to ensure elements are loaded
+    
+    elements = driver.find_elements(By.XPATH, '//a[@id="video-title-link"]')
+    links = [element.get_attribute('href') for element in elements]
+    print(len(links))
+    driver.quit()
+    
+    # Limit the number of threads
+    max_threads = max(len(links), 20)
+
+    threads = []
+    for i in range(max_threads):
+        thread = threading.Thread(target=run_thread, args=(links[i], i))
+        threads.append(thread)
+        thread.start()
+
     for thread in threads:
         thread.join()
 
 if __name__ == "__main__":
-    elements = ["honguynvn04", "hieuvilai2007"]
-    elements = elements * 600  # Lặp lại các phần tử để tạo danh sách dài hơn
-
-    num_processes = multiprocessing.cpu_count() - 2
-    processes = []
-    for i in range(num_processes):
-        process = multiprocessing.Process(target=run_process, args=(elements,))
-        process.start()
-        processes.append(process)
-
-    for process in processes:
-        process.join()
-
-    print("Done!")
+    main()
