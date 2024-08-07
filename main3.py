@@ -39,7 +39,7 @@ usernames6 = ["tvc.gym","ngthanhlong021006","minhnam2004","tienfit","anhtung_051
 usernames7 = ["hy.calis","bimostreetworkout.id","kenvo12022001","vanbinh0906","duc_trong9x","huyvo.1510","hung01082004","khacllong","thanhhau6.3","vantugdji"]
 usernames8 = ["hoanganh1112022","tuntl675", "yeuem2003n","thanabodxx","minh.ha0102","quang_fitness","huuhieulam","trunghuynh1105","thanhthong2608","sadboiz26032004_"]
 usernames9 = ["pvmminh","141201nth", "voquyhuyyy24102001","manhhiucute","hieuvilai2007","trun_trun.32","congsothichtapgym","nien_2006","kiennguyenvan0302","louischien7","_vcuongg15_"]
-usernames10 = ["anhhhh_tu","tuanhamez","sinhan68","jdnummer1","minhnguyen_ifbb","duyanh_15112003","nxp.fitness","thanhthong2608","bee.calisthenics","trungduong.97","nguyendatfitness"]
+usernames10 = ["anhhhh_tu","tuanhamez","sinhan68","jdnummer1","minhnguyen_ifbb","duyanh_15112003","nxp.fitness","thanhthong2608","bee.calisthenics","trungduong.97","nguyendatfitness","calis_sww,"longhach8386","chienhaysuy0","hoanganhfitness3"]
 
 # Mapping choices to actual lists
 username_lists = {
