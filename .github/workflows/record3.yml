@@ -51,33 +51,33 @@ jobs:
           name: ${{ matrix.usersname }}
           path: ${{ matrix.usersname }}
 
-  youtube_bot:
-    continue-on-error: true
-    strategy:
-      matrix:
-        os: [macos-latest,ubuntu-latest, windows-latest, windows-2019, ubuntu-latest]
+  # youtube_bot:
+    # continue-on-error: true
+    # strategy:
+    #   matrix:
+    #     os: [macos-latest,ubuntu-latest, windows-latest, windows-2019, ubuntu-latest]
         
 
-    runs-on: ${{ matrix.os }}
+    # runs-on: ${{ matrix.os }}
     
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    # steps:
+    #   - name: Checkout code
+    #     uses: actions/checkout@v4
         
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-           python-version: '3.10'
+    #   - name: Setup Python
+    #     uses: actions/setup-python@v5
+    #     with:
+    #        python-version: '3.10'
 
-      - name: Install dependencies
-        run: pip install selenium chromedriver_autoinstaller
+    #   - name: Install dependencies
+    #     run: pip install selenium chromedriver_autoinstaller
 
-      - name: Run Selenium script
-        run: python my_selenium.py
+    #   - name: Run Selenium script
+    #     run: python my_selenium.py
 
-      - name: Archive screenshots
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: screenshots-${{ matrix.os }}-${{ matrix.python-version }}
-          path: .
+    #   - name: Archive screenshots
+    #     uses: actions/upload-artifact@v4
+    #     if: always()
+    #     with:
+    #       name: screenshots-${{ matrix.os }}-${{ matrix.python-version }}
+    #       path: .
