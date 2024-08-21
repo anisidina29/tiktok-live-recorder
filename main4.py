@@ -31,7 +31,7 @@ def run_command(username, output):
 
 # Danh sách các username
 usernames1 = ["park.77m1","bonbarber2210","minhly06_01", "hunggymcalis", "quocvu93","nienty28", "buiquoc_sw","truongminhdung1904","hongduong.1199","k6will","jordan.cao"]
-usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","gymerteamhonda","kimnguyennanh","namomothichbenchpress","duongbeobuong","tinthichnhay2000"]
+usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","gymerteamhonda","kimnguyennanh","namomothichbenchpress","duongbeobuong","tinthichnhay2000","Tobi_calis"]
 usernames3 = ["duongkimochi","duongtapxo","congmanhfitness","_nmd04","hieuluoitap","fu_nguyen68","phongbum2002","vonhut.201","rin.fitness6","cuong_02032006","dksjsjn","voiconfit"]
 usernames4 = ["hmatuan9","huutinh103","anhbodoi6mui","ikram_rmdn","kieubanana","cokhiminhtrung","hungrambo1_","bachmahoangtu2k","frog2lee2_","duc_trong11","t_fitness3993","muixauzai"]
 usernames5 = ["hpp358965","rforrachman","ntf_205","rhenz_win","ashuracalisthenicsteam","nihao22012003","dp_120796","chuyn1999","noluckyluat2","phuongquan778899","truong66789"]
