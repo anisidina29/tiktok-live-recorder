@@ -31,14 +31,14 @@ def run_command(username, output):
 
 # Danh sách các username
 usernames1 = ["park.77m1","bonbarber2210","minhly06_01", "hunggymcalis", "quocvu93","nienty28", "buiquoc_sw","truongminhdung1904","hongduong.1199","k6will","jordan.cao"]
-usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","gymerteamhonda","kimnguyennanh","namomothichbenchpress","duongbeobuong","tinthichnhay2000","Tobi_calis"]
+usernames2 = ["honguynvn04","365.ngy.nh.em","herst277","trinhatquankhu1","thang_masic","cory.garvey","kimnguyennanh","namomothichbenchpress","duongbeobuong","tinthichnhay2000","Tobi_calis","hohainam3225","caubengungo_03"]
 usernames3 = ["duongkimochi","duongtapxo","congmanhfitness","_nmd04","hieuluoitap","fu_nguyen68","phongbum2002","vonhut.201","rin.fitness6","cuong_02032006","dksjsjn","voiconfit"]
 usernames4 = ["hmatuan9","huutinh103","anhbodoi6mui","ikram_rmdn","kieubanana","cokhiminhtrung","hungrambo1_","bachmahoangtu2k","frog2lee2_","duc_trong11","t_fitness3993","muixauzai"]
 usernames5 = ["hpp358965","rforrachman","ntf_205","rhenz_win","ashuracalisthenicsteam","nihao22012003","dp_120796","chuyn1999","noluckyluat2","phuongquan778899","truong66789","thanhlee2000","buithequyen_1209","asye_mun"]
 usernames6 = ["tvc.gym","ngthanhlong021006","minhnam2004","tienfit","anhtung_0510","vanhcalis2007","hoangchuii","pt.lehoan","duongerik99k","letruong0362","toan218"]
 usernames7 = ["hy.calis","bimostreetworkout.id","kenvo12022001","vanbinh0906","duc_trong9x","huyvo.1510","hung01082004","khacllong","thanhhau6.3","vantugdji","tiez_dunq","1m8.76kg"]
 usernames8 = ["hoanganh1112022","tuntl675", "yeuem2003n","thanabodxx","minh.ha0102","quang_fitness","huuhieulam","trunghuynh1105","thanhthong2608","sadboiz26032004_","dailuc105","dibinebazz","tamthichankem"]
-usernames9 = ["pvmminh","141201nth", "voquyhuyyy24102001","manhhiucute","hieuvilai2007","trun_trun.32","congsothichtapgym","nien_2006","kiennguyenvan0302","louischien7","_vcuongg15_","lockhocenglish"]
+usernames9 = ["pvmminh","141201nth", "voquyhuyyy24102001","manhhiucute","hieuvilai2007","trun_trun.32","congsothichtapgym","nien_2006","kiennguyenvan0302","louischien7","_vcuongg15_","lockhocenglish","]
 usernames10 = ["anhhhh_tu","tuanhamez","sinhan68","jdnummer1","minhnguyen_ifbb","duyanh_15112003","nxp.fitness","thanhthong2608","bee.calisthenics","trungduong.97","nguyendatfitness","calis_sww","longhach8386","chienhaysuy0","hoanganhfitness3"]
 
 # Mapping choices to actual lists
