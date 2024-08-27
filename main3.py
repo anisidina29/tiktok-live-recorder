@@ -10,7 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("-username",
                         dest="username",
-                        help="List username.",
+                        help="Tên danh sách username.",
                         required=True,
                         action='store')
     
@@ -33,9 +33,8 @@ def load_usernames(file_path):
         usernames = [line.strip() for line in file if line.strip()]
     return usernames
 
-# Chia usernames thành 10 danh sách
+# Chia usernames thành 10 danh sách dựa trên tên danh sách
 def split_usernames(usernames, num_lists=10):
-    # Chia đều usernames thành num_lists danh sách
     return [usernames[i::num_lists] for i in range(num_lists)]
 
 def main():
@@ -48,12 +47,26 @@ def main():
     # Chia usernames thành 10 danh sách
     username_lists = split_usernames(usernames)
     
+    # Tạo mapping giữa tên danh sách và chỉ số danh sách
+    username_map = {
+        'usernames1': 0,
+        'usernames2': 1,
+        'usernames3': 2,
+        'usernames4': 3,
+        'usernames5': 4,
+        'usernames6': 5,
+        'usernames7': 6,
+        'usernames8': 7,
+        'usernames9': 8,
+        'usernames10': 9
+    }
+    
     # Lấy danh sách các username từ đối số dòng lệnh
-    index = int(args.username) - 1  # Giả sử đối số là số từ 1 đến 10
-    if 0 <= index < len(username_lists):
+    if args.username in username_map:
+        index = username_map[args.username]
         usernames_to_process = username_lists[index]
     else:
-        print("Invalid username list index.")
+        print("Tên danh sách username không hợp lệ.")
         return
     
     # Tạo luồng cho mỗi username trong danh sách
