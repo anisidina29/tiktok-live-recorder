@@ -3,13 +3,6 @@ import subprocess
 import sys
 import zipfile
 
-# Cài đặt các thư viện cần thiết từ requirements.txt (nếu có)
-def install_requirements():
-    try:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt'])
-    except subprocess.CalledProcessError as e:
-        print(f"Không thể cài đặt các thư viện: {e}")
-
 def unzip_all_files_in_directory(directory):
     # Lặp qua tất cả các file trong thư mục hiện tại
     for item in os.listdir(directory):
@@ -30,8 +23,7 @@ def unzip_all_files_in_directory(directory):
                 print(f'Thu mục {extract_dir} đã tồn tại, bỏ qua {item}')
 
 if __name__ == "__main__":
-    # Cài đặt các thư viện cần thiết
-    install_requirements()
+ 
     
     # Lấy thư mục hiện tại
     current_directory = os.getcwd()
