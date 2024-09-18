@@ -14,10 +14,14 @@ jobs:
     strategy:
       matrix:
         usersname:
-          - "usernamesA"
-          - "usernamesB"
-          - "usernamesC"
-    
+          - "usernames1"
+          - "usernames2"
+          - "usernames3"
+          - "usernames4"
+          - "usernames5"
+          - "usernames6"
+          - "usernames7"
+          - "usernames8"
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
