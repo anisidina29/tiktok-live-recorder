@@ -19,12 +19,14 @@ def unzip_all_files_in_directory(directory):
                 with zipfile.ZipFile(item_path, 'r') as zip_ref:
                     zip_ref.extractall(extract_dir)
                     print(f'Đã giải nén {item} vào {extract_dir}')
+                    
+                # Sau khi giải nén xong, xóa file zip
+                os.remove(item_path)
+                print(f'Đã xóa file ZIP {item}')
             else:
                 print(f'Thu mục {extract_dir} đã tồn tại, bỏ qua {item}')
 
 if __name__ == "__main__":
- 
-    
     # Lấy thư mục hiện tại
     current_directory = os.getcwd()
     unzip_all_files_in_directory(current_directory)
