@@ -34,7 +34,7 @@ def load_usernames(file_path):
     return usernames
 
 # Chia usernames thành 10 danh sách dựa trên tên danh sách
-def split_usernames(usernames, num_lists=8):
+def split_usernames(usernames, num_lists=9):
     return [usernames[i::num_lists] for i in range(num_lists)]
 
 def main():
@@ -56,7 +56,8 @@ def main():
         'usernames5': 4,
         'usernames6': 5,
         'usernames7': 6,
-        'usernames8': 7
+        'usernames8': 7,
+        'usernames8': 8
     }
     
     # Lấy danh sách các username từ đối số dòng lệnh
