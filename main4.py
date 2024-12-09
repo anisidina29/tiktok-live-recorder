@@ -57,7 +57,7 @@ def main():
         'usernames6': 5,
         'usernames7': 6,
         'usernames8': 7,
-        'usernames8': 8
+        'usernames9': 8
     }
     
     # Lấy danh sách các username từ đối số dòng lệnh
