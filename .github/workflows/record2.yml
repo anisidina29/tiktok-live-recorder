@@ -42,6 +42,17 @@ jobs:
       - name: Update and upgrade packages
         run: sudo apt-get update && sudo apt-get upgrade -y
       
+      - name: Install OpenVPN
+        run:  sudo apt install -y openvpn openvpn-systemd-resolved
+      - name: Connect to VPN
+        uses: "kota65535/github-openvpn-connect-action@v2"
+        with:
+          config_file: .github/workflows/client.ovpn
+          username: ${{ secrets.OVPN_USERNAME }}
+          password: ${{ secrets.OVPN_PASSWORD }}
+          client_key: ${{ secrets.OVPN_CLIENT_KEY }}
+          tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
+      
       - name: Install FFmpeg
         run: sudo apt-get install -y ffmpeg
 
