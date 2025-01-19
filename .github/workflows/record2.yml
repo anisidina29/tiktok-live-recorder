@@ -41,7 +41,10 @@ jobs:
 
       - name: Update and upgrade packages
         run: sudo apt-get update && sudo apt-get upgrade -y
-      
+        
+      - name: Install FFmpeg
+        run: sudo apt-get install -y ffmpeg
+        
       - name: Install OpenVPN and Connect to VPN
         run:  |
             sudo apt install -y openvpn openvpn-systemd-resolved
@@ -55,9 +58,6 @@ jobs:
           # client_key: ${{ secrets.OVPN_CLIENT_KEY }}
           # tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
       
-      - name: Install FFmpeg
-        run: sudo apt-get install -y ffmpeg
-
       - name: Create user folders
         run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
 
