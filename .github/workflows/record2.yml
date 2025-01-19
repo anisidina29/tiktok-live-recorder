@@ -45,7 +45,7 @@ jobs:
       - name: Install OpenVPN and Connect to VPN
         run:  |
             sudo apt install -y openvpn openvpn-systemd-resolved
-            # sudo openvpn --config newuser.ovpn
+            
       - name: Connect to VPN
         uses: "kota65535/github-openvpn-connect-action@v2"
         with:
