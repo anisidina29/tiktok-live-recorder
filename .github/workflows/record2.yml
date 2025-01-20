@@ -45,22 +45,21 @@ jobs:
       - name: Install FFmpeg
         run: sudo apt-get install -y ffmpeg
         
-      - name: Install OpenVPN and Connect to VPN
-        run:  |
-            sudo apt install -y openvpn openvpn-systemd-resolved
+      # - name: Install OpenVPN and Connect to VPN
+      #   run:  |
+      #       sudo apt install -y openvpn openvpn-systemd-resolved
             
-      - name: Connect to VPN
-        uses: "kota65535/github-openvpn-connect-action@v2"
-        with:
-          config_file: newuser.ovpn
-          # username: ${{ secrets.OVPN_USERNAME }}
-          # password: ''
-          # client_key: ${{ secrets.OVPN_CLIENT_KEY }}
-          # tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
+      # - name: Connect to VPN
+      #   uses: "kota65535/github-openvpn-connect-action@v2"
+      #   with:
+      #     config_file: newuser.ovpn
+      #     # username: ${{ secrets.OVPN_USERNAME }}
+      #     # password: ''
+      #     # client_key: ${{ secrets.OVPN_CLIENT_KEY }}
+      #     # tls_auth_key: ${{ secrets.OVPN_TLS_AUTH_KEY }}
       
       - name: Create user folders
         run: mkdir -p $GITHUB_WORKSPACE/${{ matrix.usersname }}
-
 
       - name: Run Selenium script
         run: python main3.py -username ${{ matrix.usersname }}
