@@ -2,8 +2,8 @@ name: YT 3
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 2,8,14 * * *'
+  #schedule:
+    #- cron: '0 2,8,14 * * *'
 
 
 jobs:
