@@ -43,4 +43,4 @@ jobs:
         if: always()
         with:
           name: ${{ github.event.inputs.username }}
-          path: $GITHUB_WORKSPACE/${{ github.event.inputs.username }}
+          path: ${{ github.event.inputs.username }}
