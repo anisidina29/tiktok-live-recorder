@@ -1,0 +1,49 @@
+name: Single_record_windows
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'Nhập tên người dùng'
+        required: true
+        default: 'usernames1'
+
+jobs:
+  capture_screenshots:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Print date and time
+        run: |
+          tzutil /s "SE Asia Standard Time"
+          echo Workflow started at %date% %time%
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install FFmpeg
+        shell: powershell
+        run: |
+          choco install ffmpeg -y
+          echo 'FFmpeg installed'
+
+      - name: Create user folder
+        run: mkdir $env:GITHUB_WORKSPACE\${{ github.event.inputs.username }}
+
+      - name: Run Selenium script
+        run: |
+          python main.py -user ${{ github.event.inputs.username }} -mode automatic -output $env:GITHUB_WORKSPACE\${{ github.event.inputs.username }} -ffmpeg
+
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ github.event.inputs.username }}
+          path: ${{ github.event.inputs.username }}
